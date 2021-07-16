@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">GetHandy</string>
+    <string name="remember_me_str">Remember Me</string>
+    <string name="login_str">Login</string>
+    <string name="sign_up_str">Sign Up</string>
+    <string name="password_str">Password</string>
+    <string name="email_str">Email</string>
+    <string name="first_name_str">First Name</string>
+    <string name="last_name_str">Last Name</string>
+    <string name="re_password_str">Re-enter password</string>
+    <string name="business_str">Business</string>
+    <string name="customer_str">Customer</string>
+    <string name="home_str">Home</string>
+    <string name="profile_str">Profile</string>
+    <string name="history_str">History</string>
+    <string name="favorites_str">Favorites</string>
+    <string name="my_business_str">My Business</string>
+    <string name="reviews_str">Reviews</string>
 </resources>
