@@ -10,109 +10,122 @@
     android:gravity="center"
     android:background="@color/teal_200">
 
+
+    <!--    // TODO: Change the image view-->
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/black"
         app:cardCornerRadius="10dp">
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:padding="20dp">
-            <ImageView
+            android:scrollbars="vertical">
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_launcher_background"/>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/register_EDT_first"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/first_name_str"
-                android:layout_marginTop="20dp"
-                app:startIconDrawable="@drawable/ic_profile">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/register_EDT_last"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/last_name_str"
-                android:layout_marginTop="20dp"
-                app:startIconDrawable="@drawable/ic_profile">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/register_EDT_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/email_str"
-                android:layout_marginTop="20dp"
-                app:startIconDrawable="@drawable/ic_email">
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/register_EDT_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:hint="@string/password_str"
-                app:passwordToggleEnabled="true"
-                app:startIconDrawable="@drawable/ic_lock">
-                <com.google.android.material.textfield.TextInputEditText
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="20dp">
+                <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:src="@drawable/ic_launcher_background"/>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/register_EDT_repass"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:hint="@string/re_password_str"
-                app:passwordToggleEnabled="true"
-                app:startIconDrawable="@drawable/ic_lock">
-                <com.google.android.material.textfield.TextInputEditText
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/register_EDT_first"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword"/>
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:hint="@string/first_name_str"
+                    android:layout_marginTop="20dp"
+                    app:startIconDrawable="@drawable/ic_profile"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <RadioGroup
-                android:id="@+id/register_RDG"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:checkedButton="@id/register_RDB_customer">
-                <com.google.android.material.radiobutton.MaterialRadioButton
-                    android:id="@+id/register_RDB_customer"
-                    android:layout_width="wrap_content"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/register_EDT_last"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/customer_str"/>
-                <com.google.android.material.radiobutton.MaterialRadioButton
-                    android:id="@+id/register_RDB_business"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/business_str"/>
-            </RadioGroup>
+                    android:hint="@string/last_name_str"
+                    android:layout_marginTop="20dp"
+                    app:startIconDrawable="@drawable/ic_profile"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/register_BTN_register"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/sign_up_str"/>
-        </LinearLayout>
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/register_EDT_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/email_str"
+                    android:layout_marginTop="20dp"
+                    app:startIconDrawable="@drawable/ic_email"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/register_EDT_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:hint="@string/password_str"
+                    app:passwordToggleEnabled="true"
+                    app:startIconDrawable="@drawable/ic_lock"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/register_EDT_repass"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:hint="@string/re_password_str"
+                    app:passwordToggleEnabled="true"
+                    app:startIconDrawable="@drawable/ic_lock"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPassword"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <RadioGroup
+                    android:id="@+id/register_RDG"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:checkedButton="@id/register_RDB_customer">
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/register_RDB_customer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/customer_str"/>
+                    <com.google.android.material.radiobutton.MaterialRadioButton
+                        android:id="@+id/register_RDB_business"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/business_str"/>
+                </RadioGroup>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/register_BTN_register"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sign_up_str"/>
+            </LinearLayout>
+        </ScrollView>
+
     </com.google.android.material.card.MaterialCardView>
 
 </LinearLayout>

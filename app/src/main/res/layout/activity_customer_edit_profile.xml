@@ -18,7 +18,8 @@
             android:layout_height="wrap_content"
             android:hint="@string/first_name_str"
             android:layout_marginTop="20dp"
-            app:startIconDrawable="@drawable/ic_profile">
+            app:startIconDrawable="@drawable/ic_profile"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -30,7 +31,8 @@
             android:layout_height="wrap_content"
             android:hint="@string/last_name_str"
             android:layout_marginTop="20dp"
-            app:startIconDrawable="@drawable/ic_profile">
+            app:startIconDrawable="@drawable/ic_profile"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -43,7 +45,8 @@
             android:hint="@string/email_str"
             android:layout_marginTop="20dp"
             app:startIconDrawable="@drawable/ic_email"
-            android:enabled="false">
+            android:enabled="false"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -55,7 +58,8 @@
             android:layout_height="wrap_content"
             android:hint="@string/phone_str"
             android:layout_marginTop="20dp"
-            app:startIconDrawable="@drawable/ic_phone">
+            app:startIconDrawable="@drawable/ic_phone"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
@@ -67,7 +71,8 @@
             android:layout_height="wrap_content"
             android:hint="@string/location_str"
             android:layout_marginTop="20dp"
-            app:startIconDrawable="@drawable/ic_location">
+            app:startIconDrawable="@drawable/ic_location"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
