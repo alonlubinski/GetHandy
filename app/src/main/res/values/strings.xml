@@ -22,4 +22,6 @@
     <string name="pick_image_str">Pick Image</string>
     <string name="welcome_str">Welcome</string>
     <string name="search_for_handyman_str">Search for handyman...</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
