@@ -1,4 +1,4 @@
-package com.alon.gethandy.Fragments
+package com.alon.gethandy.Fragments.Customer
 
 import android.os.Bundle
 import android.util.Log

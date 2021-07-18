@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "745945985191",
+    "project_id": "gethandy-2c408",
+    "storage_bucket": "gethandy-2c408.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:745945985191:android:ff6efa7368668939782b82",
+        "android_client_info": {
+          "package_name": "com.alon.gethandy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "745945985191-ssgqtcte9r8q1d1o5l9u8vtgcus3n1le.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCScfkU0FvNFjgiXV0Roo1WQDXgST41M-0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "745945985191-ssgqtcte9r8q1d1o5l9u8vtgcus3n1le.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

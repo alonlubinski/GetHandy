@@ -4,10 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.alon.gethandy.Fragments.CustomerHistoryFragment
-import com.alon.gethandy.Fragments.CustomerHomeFragment
-import com.alon.gethandy.Fragments.FavoritesFragment
-import com.alon.gethandy.Fragments.ProfileFragment
+import com.alon.gethandy.Fragments.Customer.CustomerHistoryFragment
+import com.alon.gethandy.Fragments.Customer.CustomerHomeFragment
+import com.alon.gethandy.Fragments.Customer.FavoritesFragment
+import com.alon.gethandy.Fragments.Customer.ProfileFragment
 import com.alon.gethandy.databinding.ActivityHomeBinding
 import com.alon.gethandy.R
 
