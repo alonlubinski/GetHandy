@@ -1,8 +1,10 @@
 package com.alon.gethandy.Activities
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.alon.gethandy.R
 import com.alon.gethandy.Utils.Validation
@@ -11,6 +13,7 @@ import com.alon.gethandy.databinding.ActivityLoginBinding
 import com.alon.gethandy.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class SignUpActivity : AppCompatActivity() {
@@ -18,12 +21,14 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySignUpBinding
     private lateinit var auth: FirebaseAuth
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
         auth = Firebase.auth
+        val db = Firebase.firestore
 
         binding.registerBTNRegister.setOnClickListener {
             val firstName = binding.registerEDTFirst.editText?.text.toString().trim()
@@ -31,8 +36,33 @@ class SignUpActivity : AppCompatActivity() {
             val email = binding.registerEDTEmail.editText?.text.toString().trim()
             val password = binding.registerEDTPassword.editText?.text.toString().trim()
             val password2 = binding.registerEDTRepass.editText?.text.toString().trim()
+            val type = binding.registerRDG.checkedRadioButtonId
+            val customer = binding.registerRDBCustomer.id
+
+            val userType: String = when (type) {
+                customer -> "customer"
+                else -> "business"
+            }
 
             if (validateForm(firstName, lastName, email, password, password2)) {
+
+                val user = hashMapOf(
+                    "firstName" to firstName,
+                    "lastName" to lastName,
+                    "email" to email,
+                    "password" to password,
+                    "userType" to userType
+                )
+
+                db.collection("users")
+                    .document(email)
+                    .set(user)
+                    .addOnSuccessListener {
+                        Log.d(TAG, "DocumentSnapshot added")
+                    }
+                    .addOnFailureListener { e ->
+                        Log.w(TAG, "Error adding document", e)
+                    }
 
                 auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
@@ -55,8 +85,10 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
-    private fun validateForm(firstName: String, lastName: String, email: String,
-        password: String, password2: String): Boolean {
+    private fun validateForm(
+        firstName: String, lastName: String, email: String,
+        password: String, password2: String
+    ): Boolean {
 
         var isValid = true
         var passwordValid = true
