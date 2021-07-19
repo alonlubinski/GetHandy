@@ -47,6 +47,7 @@
                 app:boxStrokeWidthFocused="0dp"
                 app:boxBackgroundColor="@color/white">
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/customer_home_EDT_search"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
             </com.google.android.material.textfield.TextInputLayout>
@@ -67,6 +68,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:padding="5dp"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

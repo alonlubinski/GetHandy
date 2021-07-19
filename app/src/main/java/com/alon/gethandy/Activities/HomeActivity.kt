@@ -82,6 +82,5 @@ class HomeActivity : AppCompatActivity() {
             replace(R.id.home_FL, fragment)
             commit()
         }
-
     }
 }

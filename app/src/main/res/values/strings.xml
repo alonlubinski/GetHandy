@@ -24,4 +24,6 @@
     <string name="search_for_handyman_str">Search for handyman...</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="more_details_str">More Details</string>
+    <string name="details_str">Details</string>
 </resources>
