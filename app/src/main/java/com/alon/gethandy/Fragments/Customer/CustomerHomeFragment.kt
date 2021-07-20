@@ -28,9 +28,11 @@ class CustomerHomeFragment : Fragment() {
                 scrollRange = barLayout?.totalScrollRange!!
             }
             if(verticalOffset * -1 > scrollRange / 5 ){
+                binding.customerHomeLBLTitle.visibility = INVISIBLE
                 binding.customerHomeTIL.visibility = INVISIBLE
                 isShow = true
             } else if(isShow){
+                binding.customerHomeLBLTitle.visibility = VISIBLE
                 binding.customerHomeTIL.visibility = VISIBLE
                 isShow = false
             }

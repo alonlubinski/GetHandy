@@ -10,7 +10,8 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/customer_home_ABL"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="200dp"
+        android:background="@drawable/handyman_background_img">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/customer_home_CTB"
@@ -21,14 +22,21 @@
             app:expandedTitleMarginStart="48dp"
             app:expandedTitleMarginEnd="64dp"
             app:title="@string/welcome_str"
+            app:titleEnabled="false"
             android:padding="10dp">
 
-            <ImageView
-                android:id="@+id/customer_home_IMG"
+            <TextView
+                android:id="@+id/customer_home_LBL_title"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_collapseMode="parallax"
-                app:layout_collapseParallaxMultiplier="0.7"/>
+                android:layout_height="wrap_content"
+                android:text="@string/welcome_str"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="50sp"
+                android:shadowColor="@color/black"
+                android:shadowRadius="10"
+                android:gravity="center"
+                android:layout_marginTop="25dp"/>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/customer_home_TIL"
@@ -45,7 +53,8 @@
                 app:boxCornerRadiusTopStart="20dp"
                 app:boxStrokeWidth="0dp"
                 app:boxStrokeWidthFocused="0dp"
-                app:boxBackgroundColor="@color/white">
+                app:boxBackgroundColor="@color/white"
+                android:layout_marginBottom="30dp">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/customer_home_EDT_search"
                     android:layout_width="match_parent"

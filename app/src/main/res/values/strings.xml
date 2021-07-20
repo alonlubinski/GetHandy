@@ -26,4 +26,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="more_details_str">More Details</string>
     <string name="details_str">Details</string>
+    <string name="add_review_str">Add Review</string>
+    <string name="date_str">Date</string>
+    <string name="rating_str">Rating</string>
+    <string name="add_str">Add</string>
+    <string name="review_content_str">Review Content...</string>
 </resources>
