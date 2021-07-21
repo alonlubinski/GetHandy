@@ -16,24 +16,22 @@
         android:orientation="vertical"
         tools:ignore="Suspicious0dp">
 
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/b_profile_image_IMG"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="40dp"
+                android:src="@drawable/ic_profile">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/b_profile_image_IMG"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="40dp"
-            android:src="@drawable/ic_profile">
+            </de.hdodenhof.circleimageview.CircleImageView>
 
-        </de.hdodenhof.circleimageview.CircleImageView>
-
-        <TextView
-            android:id="@+id/b_profile_name_TXT"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/business_name"
-            android:textSize="30sp" />
-
+            <TextView
+                android:id="@+id/b_profile_name_TXT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/business_name"
+                android:textSize="30sp" />
     </LinearLayout>
 
     <com.google.android.material.button.MaterialButton

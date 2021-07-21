@@ -1,19 +1,21 @@
 package com.alon.gethandy.Activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View.INVISIBLE
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.alon.gethandy.Fragments.Business.BusinessHistoryFragment
+import com.alon.gethandy.Fragments.Business.BusinessReviewsFragment
 import com.alon.gethandy.Fragments.Business.MyBusinessFragment
 import com.alon.gethandy.Fragments.Customer.CustomerHistoryFragment
 import com.alon.gethandy.Fragments.Customer.CustomerHomeFragment
 import com.alon.gethandy.Fragments.Customer.FavoritesFragment
 import com.alon.gethandy.Fragments.Customer.ProfileFragment
 import com.alon.gethandy.Models.User
-import com.alon.gethandy.databinding.ActivityHomeBinding
 import com.alon.gethandy.R
+import com.alon.gethandy.databinding.ActivityHomeBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
@@ -28,6 +30,11 @@ class HomeActivity : AppCompatActivity() {
     private lateinit var customerHistoryFragment: CustomerHistoryFragment
     private lateinit var customerFavoritesFragment: FavoritesFragment
 
+    private lateinit var myBusinessFragment: MyBusinessFragment
+    private lateinit var businessHistoryFragment: BusinessHistoryFragment
+    private lateinit var businessReviewsFragment: BusinessReviewsFragment
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
@@ -41,12 +48,12 @@ class HomeActivity : AppCompatActivity() {
 
         var user: User
         db.collection("users").document(userEmail).get().addOnCompleteListener {
-            if(it.isSuccessful){
+            if (it.isSuccessful) {
                 user = it.result?.toObject<User>()!!
                 Log.d("pttt", user.toString())
 
                 // Change bottom menu options according to user type
-                if(user.userType == "customer"){
+                if (user.userType == "customer") {
                     binding.homeBNV.inflateMenu(R.menu.menu_customer)
                     customerHomeFragment = CustomerHomeFragment()
                     customerProfileFragment = ProfileFragment(user.email)
@@ -55,8 +62,10 @@ class HomeActivity : AppCompatActivity() {
                     replaceFragment(customerHomeFragment)
                 } else {
                     binding.homeBNV.inflateMenu(R.menu.menu_business)
-                    // TODO: Create all fragments
-                    replaceFragment(MyBusinessFragment())
+                    myBusinessFragment = MyBusinessFragment(user.email)
+                    businessHistoryFragment = BusinessHistoryFragment()
+                    businessReviewsFragment = BusinessReviewsFragment()
+                    replaceFragment(myBusinessFragment)
                 }
                 // Hide progress bar
                 binding.homePGB.visibility = INVISIBLE
@@ -66,7 +75,7 @@ class HomeActivity : AppCompatActivity() {
         }
 
         binding.homeBNV.setOnItemSelectedListener {
-            when(it.itemId){
+            when (it.itemId) {
                 // Customer options
                 R.id.customer_home -> {
                     //Toast.makeText(this, "Customer home", Toast.LENGTH_SHORT).show()
@@ -90,20 +99,24 @@ class HomeActivity : AppCompatActivity() {
                 }
 
                 // Business options
-                R.id.business_home -> {
-                    Toast.makeText(this, "Business home", Toast.LENGTH_SHORT).show()
-                    true
-                }
+//                TODO("check if home is needed")
+//                R.id.business_home -> {
+//                    Toast.makeText(this, "Business home", Toast.LENGTH_SHORT).show()
+//                    true
+//                }
                 R.id.business_business -> {
                     Toast.makeText(this, "Business business", Toast.LENGTH_SHORT).show()
+                    replaceFragment(myBusinessFragment)
                     true
                 }
                 R.id.business_history -> {
                     Toast.makeText(this, "Business history", Toast.LENGTH_SHORT).show()
+                    replaceFragment(businessHistoryFragment)
                     true
                 }
                 R.id.business_reviews -> {
                     Toast.makeText(this, "Business reviews", Toast.LENGTH_SHORT).show()
+                    replaceFragment(businessReviewsFragment)
                     true
                 }
 
@@ -116,7 +129,7 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
-    private fun replaceFragment(fragment: Fragment){
+    private fun replaceFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction().apply {
             replace(R.id.home_FL, fragment)
             commit()
