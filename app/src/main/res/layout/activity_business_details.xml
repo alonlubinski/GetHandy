@@ -7,30 +7,48 @@
     tools:context=".Activities.BusinessDetailsActivity"
     android:orientation="vertical">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1.5"
         android:orientation="vertical"
         android:background="@color/teal_200"
         android:gravity="center">
-        <com.google.android.material.imageview.ShapeableImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
-            app:strokeColor="@color/black"
-            app:strokeWidth="1dp"
-            android:src="@drawable/ic_business"
-            android:padding="10dp"/>
-        <TextView
-            android:layout_width="match_parent"
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/business_details_CHB_favorite"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Business Name"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:gravity="center"/>
-    </LinearLayout>
+            android:button="@drawable/selector_favorites"
+            android:layout_gravity="end"
+            android:buttonTint="@color/gold"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center">
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/business_details_IMG_image"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
+                app:strokeColor="@color/black"
+                app:strokeWidth="1dp"
+                android:src="@drawable/ic_business"
+                android:padding="10dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Business Name"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:gravity="center"
+                android:layout_below="@id/business_details_IMG_image"/>
+        </LinearLayout>
+
+
+    </FrameLayout>
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/business_details_TBL"
