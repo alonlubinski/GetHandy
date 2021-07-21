@@ -40,4 +40,5 @@
     <string name="my_description_business">Description</string>
     <string name="desc_business">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce facilisis metus arcu, sed condimentum nisi feugiat sit amet. Fusce eget ante mi. Proin sagittis, magna vel auctor eleifend, massa velit convallis lorem, et hendrerit ex leo quis risus. Integer egestas libero dui, sed congue sapien ullamcorper sit amet. Vestibulum tincidunt orci congue augue efficitur condimentum. Sed sit amet arcu ultricies, congue justo sed, euismod enim. Nullam vehicula risus sit amet interdum elementum. Pellentesque euismod quam nec velit sodales tincidunt at eget augue. Suspendisse molestie faucibus leo at volutpat. Aenean tincidunt ultrices mi. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Aliquam quis ullamcorper tellus, ac accumsan tellus. Vestibulum ut fringilla eros.</string>
     <string name="working_hours">12:00 - 14:00</string>
+    <string name="no_favorites_str">No favorites businesses yet...</string>
 </resources>

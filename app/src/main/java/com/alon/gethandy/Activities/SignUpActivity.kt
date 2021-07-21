@@ -63,10 +63,10 @@ class SignUpActivity : AppCompatActivity() {
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
                             // Sign in success
-                            val user = auth.currentUser
+                            val user = auth.currentUser?.email
 
                             val intent = Intent(this, HomeActivity::class.java)
-                            intent.putExtra("User", user)
+                            intent.putExtra("userEmail", user)
                             startActivity(intent)
                             finish()
 
