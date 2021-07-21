@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/business_home"
-        android:enabled="true"
-        android:title="@string/home_str"
-        android:icon="@drawable/ic_home"/>
+<!--    TODO: check if home is needed-->
+<!--    <item-->
+<!--        android:id="@+id/business_home"-->
+<!--        android:enabled="true"-->
+<!--        android:title="@string/home_str"-->
+<!--        android:icon="@drawable/ic_home"/>-->
 
     <item
         android:id="@+id/business_business"

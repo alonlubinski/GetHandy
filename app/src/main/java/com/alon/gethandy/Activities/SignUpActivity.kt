@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.alon.gethandy.Models.Business
 import com.alon.gethandy.Models.User
 import com.alon.gethandy.R
 import com.alon.gethandy.Utils.Validation
@@ -58,6 +59,20 @@ class SignUpActivity : AppCompatActivity() {
                     .addOnFailureListener { e ->
                         Log.w(TAG, "Error adding document", e)
                     }
+
+                if(userType == "business"){
+                    val business = Business(email)
+
+                    db.collection("businesses")
+                        .document(email)
+                        .set(business)
+                        .addOnSuccessListener {
+                            Log.d(TAG, "DocumentSnapshot added")
+                        }
+                        .addOnFailureListener { e ->
+                            Log.w(TAG, "Error adding document", e)
+                        }
+                }
 
                 auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
