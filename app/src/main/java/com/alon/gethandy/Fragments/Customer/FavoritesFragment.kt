@@ -55,7 +55,7 @@ class FavoritesFragment : Fragment() {
         if(!favoritesString.isNullOrEmpty()){
             var typeToken = object : TypeToken<ArrayList<String>>(){}.type
             favoritesStrings = gson.fromJson(favoritesString, typeToken)
-//            fetchFavoritesFromDB()
+            fetchFavoritesFromDB()
         } else {
             favoritesStrings = ArrayList()
             binding.favoritesLBLEmpty.visibility = VISIBLE
@@ -63,26 +63,26 @@ class FavoritesFragment : Fragment() {
         }
     }
 
-//    private fun fetchFavoritesFromDB(){
-//        db.collection("businesses").get().addOnSuccessListener {
-//            for(document in it){
-//                // Check if business is favorite
-//                val business = document.toObject<Business>()
-//                if(favoritesStrings.contains(business.businessId)){
-//                    // If the business is favorite - add him to the list
-//                    favorites.add(business)
-//                }
-//                if(!favorites.isEmpty()){
-//                    var adapter = CustomerHomeAdapter(favoritesStrings)
-//                    binding.favoritesRCV.adapter = adapter
-//                } else {
-//                    binding.favoritesLBLEmpty.visibility = VISIBLE
-//                }
-//                binding.favoritesPGB.visibility = INVISIBLE
-//
-//            }
-//
-//        }
-//    }
+    private fun fetchFavoritesFromDB(){
+        db.collection("businesses").get().addOnSuccessListener {
+            for(document in it){
+                // Check if business is favorite
+                val business = document.toObject<Business>()
+                if(favoritesStrings.contains(business.businessId)){
+                    // If the business is favorite - add him to the list
+                    favorites.add(business)
+                }
+                if(!favorites.isEmpty()){
+                    var adapter = CustomerHomeAdapter(favoritesStrings)
+                    binding.favoritesRCV.adapter = adapter
+                } else {
+                    binding.favoritesLBLEmpty.visibility = VISIBLE
+                }
+                binding.favoritesPGB.visibility = INVISIBLE
+
+            }
+
+        }
+    }
 
 }
