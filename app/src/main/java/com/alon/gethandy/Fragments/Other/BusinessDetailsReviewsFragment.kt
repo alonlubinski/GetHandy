@@ -5,11 +5,16 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.widget.RatingBar
 import android.widget.Toast
 import com.alon.gethandy.Adapters.BusinessDetailsReviewsAdapter
+import com.alon.gethandy.Adapters.CustomerHomeAdapter
+import com.alon.gethandy.Models.Business
 import com.alon.gethandy.Models.Review
+import com.alon.gethandy.Models.User
 import com.alon.gethandy.R
 import com.alon.gethandy.databinding.AddReviewDialogBinding
 import com.alon.gethandy.databinding.FragmentBusinessDetailsReviewsBinding
@@ -18,55 +23,47 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-class BusinessDetailsReviewsFragment : Fragment() {
+class BusinessDetailsReviewsFragment(private val business: Business, private val user: User): Fragment() {
 
+    private lateinit var binding: FragmentBusinessDetailsReviewsBinding
     private lateinit var materialAlertDialogBuilder: MaterialAlertDialogBuilder
     private lateinit var customAlertDialogView : View
     private lateinit var dialogBinding: AddReviewDialogBinding
     private lateinit var reviewContentTextField: TextInputLayout
     private lateinit var reviewRatingBar: RatingBar
     private lateinit var db: FirebaseFirestore
+    private var reviews: ArrayList<Review> = ArrayList()
+    private var adapter: BusinessDetailsReviewsAdapter = BusinessDetailsReviewsAdapter(reviews)
+    private var updatedTotalRating: Int = business.totalRating
+    private var updatedNumOfRates: Int = business.numOfRates
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        val binding = FragmentBusinessDetailsReviewsBinding.inflate(inflater, container, false)
+        binding = FragmentBusinessDetailsReviewsBinding.inflate(inflater, container, false)
 
         dialogBinding = AddReviewDialogBinding.inflate(inflater, container, false)
 
         db = Firebase.firestore
 
-
-        var arr = ArrayList<Review>()
-        // TODO: Handle fetching review from firebase
-        arr.add(Review("1", "This is review number one", 3, "20/07/2021", "1",
-                        "alon@gmail.com", "Alon Lubinski"))
-        arr.add(Review("2", "This is review number twoThis is review number twoThis is review number twoThis is review number twoThis is review number twoThis is review number twoThis is review number twoThis is review number twoThis is review number twoThis is review number twoThis is review number twoThis is review number twoThis is review number two", 4, "21/07/2021", "1",
-            "alon@gmail.com", "Alon Lubinski"))
-        arr.add(Review("3", "This is review number three", 2, "21/07/2021", "1",
-            "alon@gmail.com", "Alon Lubinski"))
-        arr.add(Review("4", "This is review number four", 5, "23/07/2021", "1",
-            "alon@gmail.com", "Alon Lubinski"))
-        arr.add(Review("5", "This is review number five", 1, "24/07/2021", "1",
-            "alon@gmail.com", "Alon Lubinski"))
-        var adapter = BusinessDetailsReviewsAdapter(arr)
-        binding.businessDetailsFragmentReviewsRCV.adapter = adapter
+        binding.businessDetailsFragmentReviewsLBLEmpty.visibility = INVISIBLE
 
         binding.businessDetailsFragmentReviewsCHG.setOnCheckedChangeListener { group, checkedId ->
             when(group.findViewById<Chip>(checkedId)?.text){
                 "Date" -> {
                     Log.d("pttt", "Date")
-                    var sortedArr = arr.sortedWith(compareBy { it.reviewDate }).reversed()
+                    var sortedArr = reviews.sortedWith(compareBy { it.reviewDate }).reversed()
                     adapter = BusinessDetailsReviewsAdapter(sortedArr)
                 }
                 "Rating" -> {
                     Log.d("pttt", "Rating")
-                    var sortedArr = arr.sortedWith(compareBy { it.reviewRating }).reversed()
+                    var sortedArr = reviews.sortedWith(compareBy { it.reviewRating }).reversed()
                     adapter = BusinessDetailsReviewsAdapter(sortedArr)
                 }
             }
@@ -85,6 +82,7 @@ class BusinessDetailsReviewsFragment : Fragment() {
         super.onResume()
         Log.d("pttt", "onResume")
         // TODO: Fetch all reviews from db by business id
+        fetchReviewsFromDB()
     }
 
     private fun showAddReviewDialog() {
@@ -117,18 +115,47 @@ class BusinessDetailsReviewsFragment : Fragment() {
 
                 // Create new review object
                 val review = Review(reviewId, reviewContent, reviewRating.toInt(), reviewDate,
-                    "1", "alon@gmail.com", "Alon Lubinski")
+                    business.ownerEmail, user.email, user.firstName + " " + user.lastName, user.imageUri)
 
                 // Save review to the db
-                newReviewRef.set(review)
+                newReviewRef.set(review).addOnSuccessListener {
+                    // Update rating in db
+                    updatedTotalRating += reviewRating.toInt()
+                    updatedNumOfRates += 1
+                    db.collection("businesses").document(business.ownerEmail).update(
+                        "totalRating", updatedTotalRating, "numOfRates", updatedNumOfRates
+                    ).addOnSuccessListener {
+                        fetchReviewsFromDB()
+                    }
+                }
+
                 dialog.dismiss()
-
-
             }
             .setNegativeButton("Cancel") { dialog, _ ->
                 dialog.dismiss()
             }
             .show()
+    }
+
+    private fun fetchReviewsFromDB(){
+        binding.businessDetailsFragmentReviewsRCV.removeAllViews()
+        reviews.clear()
+        binding.businessDetailsFragmentReviewsPGB.visibility = VISIBLE
+        db.collection("reviews").whereEqualTo("reviewBusinessId", business.ownerEmail).get()
+            .addOnSuccessListener {
+                for(document in it){
+                    val review = document.toObject<Review>()
+                    reviews.add(review)
+                }
+                if(!reviews.isEmpty()){
+                    binding.businessDetailsFragmentReviewsLBLEmpty.visibility = INVISIBLE
+                    var adapter = BusinessDetailsReviewsAdapter(reviews)
+                    binding.businessDetailsFragmentReviewsRCV.adapter = adapter
+                } else {
+                    binding.businessDetailsFragmentReviewsLBLEmpty.visibility = VISIBLE
+                }
+                binding.businessDetailsFragmentReviewsPGB.visibility = INVISIBLE
+            }
     }
 
 }

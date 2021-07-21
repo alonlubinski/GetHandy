@@ -10,17 +10,30 @@ import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import com.alon.gethandy.Adapters.CustomerHomeAdapter
+import com.alon.gethandy.Models.Business
+import com.alon.gethandy.Models.User
 import com.alon.gethandy.databinding.FragmentCustomerHomeBinding
 import com.google.android.material.appbar.AppBarLayout
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.ktx.toObject
+import com.google.firebase.ktx.Firebase
 
 
-class CustomerHomeFragment : Fragment() {
+class CustomerHomeFragment(private val user: User) : Fragment() {
 
+    private lateinit var binding: FragmentCustomerHomeBinding
+    private lateinit var db: FirebaseFirestore
+    private var businesses: ArrayList<Business> = ArrayList()
+    private var adapter: CustomerHomeAdapter = CustomerHomeAdapter(businesses, user)
 
     override fun onCreateView (inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
-        val binding = FragmentCustomerHomeBinding.inflate(inflater, container, false)
+        binding = FragmentCustomerHomeBinding.inflate(inflater, container, false)
+
+        db = Firebase.firestore
+
         var isShow = true
         var scrollRange = -1
         binding.customerHomeABL.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener{ barLayout, verticalOffset ->
@@ -38,15 +51,8 @@ class CustomerHomeFragment : Fragment() {
             }
         })
 
-        val arr = ArrayList<String>()
-        arr.add("One")
-        arr.add("Two")
-        arr.add("Three")
-        arr.add("Four")
-        arr.add("Five")
-        arr.add("Six")
-        var adapter = CustomerHomeAdapter(arr)
-        binding.customerHomeRCV.adapter = adapter
+
+        //binding.customerHomeRCV.adapter = adapter
 
         binding.customerHomeEDTSearch.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -54,7 +60,7 @@ class CustomerHomeFragment : Fragment() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                adapter = CustomerHomeAdapter(filterDataset(arr, s))
+                adapter = CustomerHomeAdapter(filterDataset(businesses, s), user)
                 binding.customerHomeRCV.adapter = adapter
             }
 
@@ -66,18 +72,36 @@ class CustomerHomeFragment : Fragment() {
         return binding.root
     }
 
-    private fun filterDataset(arr: ArrayList<String>, charSequence: CharSequence?) : ArrayList<String> {
-        var filteredArr = ArrayList<String>()
+    override fun onResume() {
+        super.onResume()
+        fetchBusinessesFromDB()
+    }
+
+    private fun filterDataset(arr: ArrayList<Business>, charSequence: CharSequence?) : ArrayList<Business> {
+        var filteredArr = ArrayList<Business>()
         var str = ""
         if(charSequence?.isNotEmpty()!!){
             str = charSequence.subSequence(0, 1).toString().toUpperCase() + charSequence.subSequence(1, charSequence.length)
         }
         for (obj in arr){
-            if(obj.startsWith(str)){
+            if(obj.businessName.startsWith(str)){
                 filteredArr.add(obj)
             }
         }
         return filteredArr
+    }
+
+    private fun fetchBusinessesFromDB() {
+        binding.customerHomeRCV.removeAllViews()
+        businesses.clear()
+        db.collection("businesses").get().addOnSuccessListener {
+            for(document in it){
+                val business = document.toObject<Business>()
+                businesses.add(business)
+            }
+            var adapter = CustomerHomeAdapter(businesses, user)
+            binding.customerHomeRCV.adapter = adapter
+        }
     }
 
 }

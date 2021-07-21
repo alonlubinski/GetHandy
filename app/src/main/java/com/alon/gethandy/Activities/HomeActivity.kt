@@ -55,7 +55,7 @@ class HomeActivity : AppCompatActivity() {
                 // Change bottom menu options according to user type
                 if (user.userType == "customer") {
                     binding.homeBNV.inflateMenu(R.menu.menu_customer)
-                    customerHomeFragment = CustomerHomeFragment()
+                    customerHomeFragment = CustomerHomeFragment(user)
                     customerProfileFragment = ProfileFragment(user.email)
                     customerHistoryFragment = CustomerHistoryFragment()
                     customerFavoritesFragment = FavoritesFragment()
