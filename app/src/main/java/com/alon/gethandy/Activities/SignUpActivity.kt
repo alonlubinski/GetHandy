@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.alon.gethandy.Models.User
 import com.alon.gethandy.R
 import com.alon.gethandy.Utils.Validation
 import com.alon.gethandy.Utils.hideKeyboard
@@ -46,13 +47,7 @@ class SignUpActivity : AppCompatActivity() {
 
             if (validateForm(firstName, lastName, email, password, password2)) {
 
-                val user = hashMapOf(
-                    "firstName" to firstName,
-                    "lastName" to lastName,
-                    "email" to email,
-                    "password" to password,
-                    "userType" to userType
-                )
+                val user = User(firstName, lastName, email, userType, arrayListOf(), arrayListOf())
 
                 db.collection("users")
                     .document(email)

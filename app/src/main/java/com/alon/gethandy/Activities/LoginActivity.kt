@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.widget.CompoundButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.alon.gethandy.Utils.Validation
@@ -47,7 +46,13 @@ class LoginActivity : AppCompatActivity() {
         binding.loginBTNLogin.setOnClickListener {
             val email = binding.loginEDTEmail.editText?.text.toString().trim()
             val password = binding.loginEDTPassword.editText?.text.toString().trim()
+            val checkbox: Boolean = binding.loginCKBRemember.isChecked
             if (validateForm(email, password)) {
+
+                if (checkbox)
+                    sharedPref.edit().putBoolean("rememberMe", true).apply()
+                else
+                    sharedPref.edit().putBoolean("rememberMe", false).apply()
 
                 auth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
@@ -64,21 +69,6 @@ class LoginActivity : AppCompatActivity() {
                     }
             }
         }
-
-        binding.loginCKBRemember.setOnCheckedChangeListener(
-            CompoundButton.OnCheckedChangeListener { rememberMe, isChecked ->
-                if (rememberMe.isChecked) {
-                    with(sharedPref.edit()) {
-                        putBoolean("rememberMe", true)
-                        apply()
-                    }
-                } else {
-                    with(sharedPref.edit()) {
-                        putBoolean("rememberMe", false)
-                        apply()
-                    }
-                }
-            })
     }
 
     private fun validateForm(email: String, password: String): Boolean {
