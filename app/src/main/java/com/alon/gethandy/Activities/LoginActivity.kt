@@ -31,9 +31,10 @@ class LoginActivity : AppCompatActivity() {
         val isRemembered = sharedPref.getBoolean("rememberMe", false)
 
         if (isRemembered) {
-            val currentUser = auth.currentUser
-            if (currentUser != null) {
+            val currentUserEmail = auth.currentUser?.email
+            if (currentUserEmail != null) {
                 val intent = Intent(this, HomeActivity::class.java)
+                intent.putExtra("userEmail", currentUserEmail)
                 startActivity(intent)
             }
         }
@@ -57,9 +58,9 @@ class LoginActivity : AppCompatActivity() {
                 auth.signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
-                            val user = auth.currentUser
+                            val userEmail = auth.currentUser?.email
                             val intent = Intent(this, HomeActivity::class.java)
-                            intent.putExtra("User", user)
+                            intent.putExtra("userEmail", userEmail)
                             startActivity(intent)
 
                         } else {

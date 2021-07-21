@@ -22,14 +22,16 @@
                 android:background="#6CFFF1"
                 android:gravity="center">
                 <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:id="@+id/profile_IMG_image"
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
                     app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
                     app:strokeColor="@color/black"
                     app:strokeWidth="1dp"
-                    android:src="@drawable/ic_business"
+                    android:src="@drawable/ic_profile"
                     android:padding="10dp"/>
                 <TextView
+                    android:id="@+id/profile_LBL_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="User Full Name"

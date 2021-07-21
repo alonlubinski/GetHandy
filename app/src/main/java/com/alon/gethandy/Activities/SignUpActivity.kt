@@ -47,7 +47,7 @@ class SignUpActivity : AppCompatActivity() {
 
             if (validateForm(firstName, lastName, email, password, password2)) {
 
-                val user = User(firstName, lastName, email, userType, arrayListOf(), arrayListOf())
+                val user = User(firstName, lastName, email,"", userType, arrayListOf(), arrayListOf(), "")
 
                 db.collection("users")
                     .document(email)
