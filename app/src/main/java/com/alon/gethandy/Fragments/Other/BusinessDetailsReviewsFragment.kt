@@ -55,8 +55,7 @@ class BusinessDetailsReviewsFragment(private val business: Business, private val
         binding.businessDetailsFragmentReviewsLBLEmpty.visibility = INVISIBLE
 
         binding.businessDetailsFragmentReviewsCHG.setOnCheckedChangeListener { group, checkedId ->
-            val titleOrNull = group.findViewById<Chip>(checkedId)?.text
-            when(titleOrNull){
+            when(group.findViewById<Chip>(checkedId)?.text){
                 "Date" -> {
                     Log.d("pttt", "Date")
                     var sortedArr = reviews.sortedWith(compareBy { it.reviewDate }).reversed()

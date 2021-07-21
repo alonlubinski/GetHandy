@@ -64,7 +64,7 @@ class HomeActivity : AppCompatActivity() {
                     binding.homeBNV.inflateMenu(R.menu.menu_business)
                     myBusinessFragment = MyBusinessFragment(user.email)
                     businessHistoryFragment = BusinessHistoryFragment()
-                    businessReviewsFragment = BusinessReviewsFragment()
+                    businessReviewsFragment = BusinessReviewsFragment(user.email)
                     replaceFragment(myBusinessFragment)
                 }
                 // Hide progress bar
@@ -105,17 +105,17 @@ class HomeActivity : AppCompatActivity() {
 //                    true
 //                }
                 R.id.business_business -> {
-                    Toast.makeText(this, "Business business", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this, "Business business", Toast.LENGTH_SHORT).show()
                     replaceFragment(myBusinessFragment)
                     true
                 }
                 R.id.business_history -> {
-                    Toast.makeText(this, "Business history", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this, "Business history", Toast.LENGTH_SHORT).show()
                     replaceFragment(businessHistoryFragment)
                     true
                 }
                 R.id.business_reviews -> {
-                    Toast.makeText(this, "Business reviews", Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this, "Business reviews", Toast.LENGTH_SHORT).show()
                     replaceFragment(businessReviewsFragment)
                     true
                 }
