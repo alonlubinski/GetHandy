@@ -2,16 +2,14 @@ package com.alon.gethandy.Activities
 
 import android.content.ContentValues.TAG
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.alon.gethandy.Models.Business
 import com.alon.gethandy.Models.User
-import com.alon.gethandy.R
 import com.alon.gethandy.Utils.Validation
 import com.alon.gethandy.Utils.hideKeyboard
-import com.alon.gethandy.databinding.ActivityLoginBinding
 import com.alon.gethandy.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -48,7 +46,8 @@ class SignUpActivity : AppCompatActivity() {
 
             if (validateForm(firstName, lastName, email, password, password2)) {
 
-                val user = User(firstName, lastName, email,"", userType, arrayListOf(), arrayListOf(), "")
+                val user =
+                    User(firstName, lastName, email, "", userType, arrayListOf(), arrayListOf(), "")
 
                 db.collection("users")
                     .document(email)
@@ -60,8 +59,21 @@ class SignUpActivity : AppCompatActivity() {
                         Log.w(TAG, "Error adding document", e)
                     }
 
-                if(userType == "business"){
-                    val business = Business(email)
+                if (userType == "business") {
+                    val business = Business(
+                        email,
+                        "",
+                        "00 street, Town",
+                        "",
+                        0,
+                        0,
+                        0.0,
+                        "00:00",
+                        "00:00",
+                        "",
+                        "",
+                        "$firstName $lastName"
+                    )
 
                     db.collection("businesses")
                         .document(email)

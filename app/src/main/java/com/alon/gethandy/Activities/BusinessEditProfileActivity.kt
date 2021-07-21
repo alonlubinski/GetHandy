@@ -87,7 +87,7 @@ class BusinessEditProfileActivity : AppCompatActivity() {
                         businessName,
                         "startHours",
                         startHour,
-                        "endHour",
+                        "endHours",
                         endHour,
                         "phoneNumber",
                         phone,
