@@ -18,6 +18,36 @@
         android:layout_marginTop="10dp"/>
 
     <TextView
+        android:id="@+id/business_details_fragment_LBL_owner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_profile"
+        android:layout_gravity="center_vertical"
+        android:drawablePadding="10dp"
+        android:text="Business Owner"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/business_details_fragment_LBL_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_phone"
+        android:layout_gravity="center_vertical"
+        android:drawablePadding="10dp"
+        android:text="Business Phone"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/business_details_fragment_LBL_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/ic_email"
+        android:layout_gravity="center_vertical"
+        android:drawablePadding="10dp"
+        android:text="Business Email"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
         android:id="@+id/business_details_fragment_LBL_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -44,7 +74,28 @@
         android:drawableLeft="@drawable/ic_favorites"
         android:layout_gravity="center_vertical"
         android:drawablePadding="10dp"
-        android:text="Business Name"
+        android:text="Business Rating"
         android:layout_marginTop="10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="10dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_reviews"
+            android:layout_gravity="start"/>
+        <TextView
+            android:id="@+id/business_details_fragment_LBL_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:drawablePadding="10dp"
+            android:text="Business Description"
+            android:paddingLeft="10dp"/>
+    </LinearLayout>
 
 </LinearLayout>

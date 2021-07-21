@@ -37,6 +37,7 @@
                 android:src="@drawable/ic_business"
                 android:padding="10dp"/>
             <TextView
+                android:id="@+id/business_details_LBL_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Business Name"

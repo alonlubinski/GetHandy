@@ -12,6 +12,7 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import com.alon.gethandy.Adapters.CustomerHomeAdapter
 import com.alon.gethandy.Models.Business
+import com.alon.gethandy.Models.User
 import com.alon.gethandy.databinding.FragmentFavoritesBinding
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
@@ -50,6 +51,8 @@ class FavoritesFragment : Fragment() {
     }
 
     private fun fetchFavoritesStringsFromSP(){
+        binding.favoritesRCV.removeAllViews()
+        favorites.clear()
         var favoritesString = sharedPref.getString("favorites", null)
         Log.d("pttt", favoritesString.toString())
         if(!favoritesString.isNullOrEmpty()){
@@ -68,12 +71,12 @@ class FavoritesFragment : Fragment() {
             for(document in it){
                 // Check if business is favorite
                 val business = document.toObject<Business>()
-                if(favoritesStrings.contains(business.businessId)){
+                if(favoritesStrings.contains(business.ownerEmail)){
                     // If the business is favorite - add him to the list
                     favorites.add(business)
                 }
                 if(!favorites.isEmpty()){
-                    var adapter = CustomerHomeAdapter(favoritesStrings)
+                    var adapter = CustomerHomeAdapter(favorites, User())
                     binding.favoritesRCV.adapter = adapter
                 } else {
                     binding.favoritesLBLEmpty.visibility = VISIBLE
