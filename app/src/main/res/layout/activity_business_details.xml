@@ -12,7 +12,9 @@
         android:layout_height="0dp"
         android:layout_weight="1.5"
         android:orientation="vertical"
-        android:background="@color/teal_200"
+        android:background="@drawable/handyman_background_img"
+        android:backgroundTintMode="src_over"
+        android:backgroundTint="#66000000"
         android:gravity="center">
 
         <com.google.android.material.checkbox.MaterialCheckBox
@@ -29,10 +31,10 @@
             android:gravity="center">
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/business_details_IMG_image"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 app:shapeAppearanceOverlay="@style/roundedImageViewRounded"
-                app:strokeColor="@color/black"
+                app:strokeColor="@color/white"
                 app:strokeWidth="1dp"
                 android:src="@drawable/ic_business"
                 android:padding="10dp"/>
@@ -42,8 +44,10 @@
                 android:layout_height="wrap_content"
                 android:text="Business Name"
                 android:textStyle="bold"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="20sp"
+                android:shadowColor="@color/black"
+                android:shadowRadius="10"
                 android:gravity="center"
                 android:layout_below="@id/business_details_IMG_image"/>
         </LinearLayout>

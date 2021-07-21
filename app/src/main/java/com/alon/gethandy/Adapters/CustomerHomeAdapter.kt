@@ -31,11 +31,12 @@ class CustomerHomeAdapter(private val dataSet: ArrayList<Business>, private val 
         holder.binding.businessRowLBLName.text = dataSet.get(position).businessName
         holder.binding.businessRowLBLAddress.text = dataSet.get(position).businessAddress
         if(dataSet.get(position).numOfRates > 0){
+            val rating =
+                String.format("%.2f", (dataSet.get(position).totalRating.toDouble() / dataSet.get(position).numOfRates.toDouble()))
             holder.binding.businessRowLBLRating.text =
-                (dataSet.get(position).totalRating.toDouble() / dataSet.get(position).numOfRates.toDouble()).toString() +
-                        " (${dataSet.get(position).numOfRates} rates)"
+                rating + " (${dataSet.get(position).numOfRates} rates)"
         } else {
-            holder.binding.businessRowLBLRating.text = "0.0"
+            holder.binding.businessRowLBLRating.text = "0.0 (0 rates)"
         }
         holder.binding.businessRowLBLDistance.text = dataSet.get(position).distance.toString()
         Glide.with(holder.itemView.context).load(dataSet.get(position).businessImage).centerCrop()

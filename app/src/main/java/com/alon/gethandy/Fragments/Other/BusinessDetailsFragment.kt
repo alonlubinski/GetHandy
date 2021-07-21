@@ -43,11 +43,12 @@ class BusinessDetailsFragment(private val businessOwnerEmail: String) : Fragment
         binding.businessDetailsFragmentLBLAddress.text = business.businessAddress
         binding.businessDetailsFragmentLBLHours.text = business.startHours + " - " + business.endHours
         if(business.numOfRates > 0) {
+            val rating =
+                String.format("%.2f", (business.totalRating.toDouble() / business.numOfRates.toDouble()))
             binding.businessDetailsFragmentLBLRating.text =
-                (business.totalRating.toDouble() / business.numOfRates.toDouble()).toString() +
-                        " (${business.numOfRates} rates)"
+                rating + " (${business.numOfRates} rates)"
         } else {
-            binding.businessDetailsFragmentLBLRating.text = "0"
+            binding.businessDetailsFragmentLBLRating.text = "0.0 (0 rates)"
         }
         binding.businessDetailsFragmentLBLDescription.text = business.description
 

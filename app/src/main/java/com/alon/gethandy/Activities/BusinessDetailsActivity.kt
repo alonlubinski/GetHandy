@@ -24,6 +24,7 @@ class BusinessDetailsActivity: AppCompatActivity() {
     private lateinit var sharedPref: SharedPreferences
     private var isFavorite: Boolean = false
     private lateinit var favorites: ArrayList<String>
+    private lateinit var history: ArrayList<String>
     private var gson: Gson = Gson()
     private lateinit var business: Business
     private lateinit var user: User
@@ -37,6 +38,7 @@ class BusinessDetailsActivity: AppCompatActivity() {
         business = intent.getSerializableExtra("business") as Business
         user = intent.getSerializableExtra("user") as User
 
+        sharedPref = this.getSharedPreferences("sp", Context.MODE_PRIVATE)
         // Update UI
         updateUI()
 
@@ -84,16 +86,33 @@ class BusinessDetailsActivity: AppCompatActivity() {
         }
     }
 
-    override fun onStop() {
-        super.onStop()
-        Log.d("pttt", "onStop")
+    override fun onResume() {
+        super.onResume()
+        var historyString = sharedPref.getString("history", null)
+        if(!historyString.isNullOrEmpty()){
+            var typeToken = object : TypeToken<ArrayList<String>>(){}.type
+            history = gson.fromJson(historyString, typeToken)
+            if(history.contains(business.ownerEmail)){
+                history.remove(business.ownerEmail)
+            }
+        } else {
+            history = ArrayList()
+        }
+        history.add(0, business.ownerEmail)
+        historyString = gson.toJson(history)
+        sharedPref.edit().putString("history", historyString).apply()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d("pttt", "onPause")
         var favoritesString = gson.toJson(favorites)
         Log.d("pttt", favoritesString)
         sharedPref.edit().putString("favorites", favoritesString).apply()
+
     }
 
     private fun updateUI() {
-        sharedPref = this.getSharedPreferences("sp", Context.MODE_PRIVATE)
         var favoritesString = sharedPref.getString("favorites", null)
         Log.d("pttt", favoritesString.toString())
 

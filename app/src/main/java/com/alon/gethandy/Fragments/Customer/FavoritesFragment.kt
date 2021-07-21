@@ -26,7 +26,7 @@ class FavoritesFragment : Fragment() {
     private lateinit var binding: FragmentFavoritesBinding
     private lateinit var db: FirebaseFirestore
     private lateinit var sharedPref: SharedPreferences
-    private lateinit var favoritesStrings: ArrayList<String>
+    private var favoritesStrings: ArrayList<String> = ArrayList()
     private var gson: Gson = Gson()
     private var favorites: ArrayList<Business> = ArrayList()
 
@@ -37,7 +37,7 @@ class FavoritesFragment : Fragment() {
         binding = FragmentFavoritesBinding.inflate(inflater, container, false)
 
         db = Firebase.firestore
-        sharedPref = requireActivity().getSharedPreferences("sp", Context.MODE_PRIVATE)
+
 
         binding.favoritesLBLEmpty.visibility = INVISIBLE
         binding.favoritesPGB.visibility = VISIBLE
@@ -47,11 +47,14 @@ class FavoritesFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        Log.d("pttt", "onResume")
         fetchFavoritesStringsFromSP()
     }
 
     private fun fetchFavoritesStringsFromSP(){
+        sharedPref = requireActivity().getSharedPreferences("sp", Context.MODE_PRIVATE)
         binding.favoritesRCV.removeAllViews()
+        favoritesStrings.clear()
         favorites.clear()
         var favoritesString = sharedPref.getString("favorites", null)
         Log.d("pttt", favoritesString.toString())

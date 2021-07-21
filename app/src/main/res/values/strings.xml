@@ -46,5 +46,6 @@
     <string name="end_hour">End Hour</string>
     <string name="description">Description</string>
     <string name="no_reviews_str">No reviews yet...</string>
+    <string name="no_history_str">No history yet...</string>
 
 </resources>
