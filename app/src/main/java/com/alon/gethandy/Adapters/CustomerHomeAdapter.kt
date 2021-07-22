@@ -12,7 +12,7 @@ import com.alon.gethandy.R
 import com.alon.gethandy.databinding.BusinessRowBinding
 import com.bumptech.glide.Glide
 
-class CustomerHomeAdapter(private val dataSet: ArrayList<Business>, private val user: User)
+class CustomerHomeAdapter(private val dataSet: List<Business>, private val user: User)
     : RecyclerView.Adapter<CustomerHomeAdapter.ViewHolder>() {
 
 
@@ -38,7 +38,7 @@ class CustomerHomeAdapter(private val dataSet: ArrayList<Business>, private val 
         } else {
             holder.binding.businessRowLBLRating.text = "0.0 (0 rates)"
         }
-        holder.binding.businessRowLBLDistance.text = dataSet.get(position).distance.toString()
+        holder.binding.businessRowLBLDistance.text = dataSet.get(position).distance
         Glide.with(holder.itemView.context).load(dataSet.get(position).businessImage).centerCrop()
             .into(holder.binding.businessRowIMGImage)
         holder.binding.businessRowBTNDetails.setOnClickListener {
