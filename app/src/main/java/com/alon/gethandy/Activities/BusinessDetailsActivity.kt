@@ -43,7 +43,7 @@ class BusinessDetailsActivity: AppCompatActivity() {
         updateUI()
 
         val detailsFragment = BusinessDetailsFragment(business.ownerEmail)
-        val locationFragment = BusinessLocationFragment()
+        val locationFragment = BusinessLocationFragment(business)
         val reviewsFragment = BusinessDetailsReviewsFragment(business, user)
         replaceFragment(detailsFragment)
 

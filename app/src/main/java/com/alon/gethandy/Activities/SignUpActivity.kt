@@ -47,7 +47,7 @@ class SignUpActivity : AppCompatActivity() {
             if (validateForm(firstName, lastName, email, password, password2)) {
 
                 val user =
-                    User(firstName, lastName, email, "", userType, arrayListOf(), arrayListOf(), "")
+                    User(firstName, lastName, email, "", userType, 0.0, 0.0, "")
 
                 db.collection("users")
                     .document(email)
@@ -63,7 +63,8 @@ class SignUpActivity : AppCompatActivity() {
                     val business = Business(
                         email,
                         "",
-                        "00 street, Town",
+                        0.0,
+                        0.0,
                         "",
                         0,
                         0,
