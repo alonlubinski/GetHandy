@@ -70,8 +70,8 @@ class HomeActivity : AppCompatActivity() {
                     binding.homeBNV.inflateMenu(R.menu.menu_customer)
                     customerHomeFragment = CustomerHomeFragment(user)
                     customerProfileFragment = ProfileFragment(user.email)
-                    customerHistoryFragment = CustomerHistoryFragment()
-                    customerFavoritesFragment = FavoritesFragment()
+                    customerHistoryFragment = CustomerHistoryFragment(user)
+                    customerFavoritesFragment = FavoritesFragment(user)
                     replaceFragment(customerHomeFragment)
                 } else {
                     binding.homeBNV.inflateMenu(R.menu.menu_business)

@@ -42,7 +42,10 @@
                     android:textSize="20sp"
                     android:shadowColor="@color/black"
                     android:shadowRadius="10"
-                    android:gravity="center"/>
+                    android:gravity="center"
+                    android:autoSizeTextType="uniform"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"/>
             </LinearLayout>
             
             <LinearLayout

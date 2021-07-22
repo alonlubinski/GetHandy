@@ -2,6 +2,7 @@ package com.alon.gethandy.Fragments.Customer
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.location.Location
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -21,7 +22,7 @@ import com.google.firebase.ktx.Firebase
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
-class FavoritesFragment : Fragment() {
+class FavoritesFragment(private val user: User) : Fragment() {
 
     private lateinit var binding: FragmentFavoritesBinding
     private lateinit var db: FirebaseFirestore
@@ -76,6 +77,9 @@ class FavoritesFragment : Fragment() {
                 val business = document.toObject<Business>()
                 if(favoritesStrings.contains(business.ownerEmail)){
                     // If the business is favorite - add him to the list
+                    val results = FloatArray(1)
+                    Location.distanceBetween(user.lat, user.lon, business.lat, business.lon, results)
+                    business.distance = String.format("%.1f",(results[0] / 1000)) + "KM"
                     favorites.add(business)
                 }
                 if(!favorites.isEmpty()){
