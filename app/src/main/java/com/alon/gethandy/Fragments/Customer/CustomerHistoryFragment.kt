@@ -8,6 +8,7 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.INVISIBLE
 import android.view.ViewGroup
 import com.alon.gethandy.Adapters.CustomerHomeAdapter
 import com.alon.gethandy.Models.Business
@@ -80,10 +81,11 @@ class CustomerHistoryFragment(private val user: User) : Fragment() {
                 if(!history.isEmpty()){
                     var adapter = CustomerHomeAdapter(history, User())
                     binding.historyRCV.adapter = adapter
+                    binding.historyLBLEmpty.visibility = INVISIBLE
                 } else {
                     binding.historyLBLEmpty.visibility = View.VISIBLE
                 }
-                binding.historyPGB.visibility = View.INVISIBLE
+                binding.historyPGB.visibility = INVISIBLE
 
             }
 

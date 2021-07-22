@@ -85,6 +85,7 @@ class FavoritesFragment(private val user: User) : Fragment() {
                 if(!favorites.isEmpty()){
                     var adapter = CustomerHomeAdapter(favorites, User())
                     binding.favoritesRCV.adapter = adapter
+                    binding.favoritesLBLEmpty.visibility = INVISIBLE
                 } else {
                     binding.favoritesLBLEmpty.visibility = VISIBLE
                 }
