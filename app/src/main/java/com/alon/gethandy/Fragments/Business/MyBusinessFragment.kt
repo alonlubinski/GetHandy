@@ -68,6 +68,7 @@ class MyBusinessFragment(var userEmail: String) : Fragment() {
         binding.bProfileLBLPhone.text = business.phoneNumber
         //binding.bProfileLBLLocation.text = business.businessAddress
         binding.bProfileDescTXT.text = business.description
+        binding.bProfileNameTXT.text = business.businessName
 
         if (business.businessImage.isNotEmpty()) {
             Glide.with(requireContext()).load(business.businessImage).centerCrop()

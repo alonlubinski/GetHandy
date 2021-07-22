@@ -118,10 +118,6 @@ class HomeActivity : AppCompatActivity() {
                     replaceFragment(myBusinessFragment)
                     true
                 }
-                R.id.business_history -> {
-                    replaceFragment(businessHistoryFragment)
-                    true
-                }
                 R.id.business_reviews -> {
                     replaceFragment(businessReviewsFragment)
                     true

@@ -9,7 +9,10 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="200dp"
+        android:background="@drawable/handyman_background_img"
+        android:backgroundTintMode="src_over"
+        android:backgroundTint="#66000000">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/business_reviews_CTB"
@@ -18,8 +21,20 @@
             app:expandedTitleGravity="top"
             app:expandedTitleMarginEnd="64dp"
             app:expandedTitleMarginStart="48dp"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:title="@string/reviews_str">
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <TextView
+                android:id="@+id/business_review_LBL_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/reviews_str"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="50sp"
+                android:shadowColor="@color/black"
+                android:shadowRadius="10"
+                android:gravity="center"
+                android:layout_marginTop="55dp"/>
 
             <ImageView
                 android:id="@+id/business_reviews_IMG"
