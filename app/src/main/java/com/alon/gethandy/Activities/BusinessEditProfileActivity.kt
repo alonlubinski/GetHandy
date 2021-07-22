@@ -47,6 +47,7 @@ class BusinessEditProfileActivity : AppCompatActivity() {
         binding.bUpdateEDTPhone.editText?.setText(business?.phoneNumber)
         binding.bUpdateEDTOwner.editText?.setText(business?.ownerName)
         binding.bUpdateEDTEmail.editText?.setText(business?.ownerEmail)
+        binding.bUpdateEDTDescription.editText?.setText(business?.description)
 
 
         if (business?.businessImage?.isNotEmpty() == true) {
