@@ -46,11 +46,16 @@ class BusinessEditProfileActivity : AppCompatActivity() {
         binding.bUpdateEDTEndTime.editText?.setText(business?.endHours)
         binding.bUpdateEDTPhone.editText?.setText(business?.phoneNumber)
         binding.bUpdateEDTOwner.editText?.setText(business?.ownerName)
-        //TODO: check about location
-//        binding.bUpdateEDTLocation.editText?.setText(business?.businessAddress)
+        binding.bUpdateEDTEmail.editText?.setText(business?.ownerEmail)
+
 
         if (business?.businessImage?.isNotEmpty() == true) {
             Glide.with(this).load(business.businessImage).into(binding.bUpdateIMGImage)
+        }
+        else{
+            Glide.with(this)
+                .load("https://firebasestorage.googleapis.com/v0/b/gethandy-2c408.appspot.com/o/images%2Fusers%2Fprofile_pic.png?alt=media&token=26a3b1f2-fe62-40a0-95a3-334caa477bf9")
+                .into(binding.bUpdateIMGImage)
         }
 
         binding.bUpdateBTNUpdate.setOnClickListener {
@@ -75,8 +80,6 @@ class BusinessEditProfileActivity : AppCompatActivity() {
                     val endHour = binding.bUpdateEDTEndTime.editText?.text.toString().trim()
                     val phone = binding.bUpdateEDTPhone.editText?.text.toString().trim()
                     val ownerName = binding.bUpdateEDTOwner.editText?.text.toString().trim()
-                    //TODO: check location
-                    //val location = binding.bUpdateEDTLocation.editText?.text.toString().trim()
                     val description = binding.bUpdateEDTDescription.editText?.text.toString().trim()
 
                     val imageUri = it.toString()
@@ -96,7 +99,9 @@ class BusinessEditProfileActivity : AppCompatActivity() {
                         "businessImage",
                         imageUri,
                         "ownerName",
-                        ownerName
+                        ownerName,
+                        "ownerEmail",
+                        email
 
                     ).addOnSuccessListener {
 

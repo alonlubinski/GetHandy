@@ -66,7 +66,6 @@ class MyBusinessFragment(var userEmail: String) : Fragment() {
         binding.bProfileLBLEmail.text = business.ownerEmail
         binding.bProfileHoursTXT.text = "${business.startHours} - ${business.endHours}"
         binding.bProfileLBLPhone.text = business.phoneNumber
-        //binding.bProfileLBLLocation.text = business.businessAddress
         binding.bProfileDescTXT.text = business.description
         binding.bProfileNameTXT.text = business.businessName
 

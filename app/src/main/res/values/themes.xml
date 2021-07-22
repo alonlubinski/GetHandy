@@ -16,7 +16,7 @@
 
     <style name="Theme.GetHandy.NoActionBar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#F3960F</item>
+        <item name="colorPrimary">#EF8D00</item>
         <item name="colorPrimaryVariant">#F3960F</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->

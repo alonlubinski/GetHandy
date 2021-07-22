@@ -69,8 +69,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:hint="@string/start_hour"
-                app:startIconDrawable="@drawable/ic_time"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                app:startIconDrawable="@drawable/ic_time">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -85,8 +85,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:hint="@string/end_hour"
-                app:startIconDrawable="@drawable/ic_time"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                app:startIconDrawable="@drawable/ic_time">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -109,33 +109,22 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/b_update_EDT_location"
+                android:id="@+id/b_update_EDT_description"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="@string/location_str"
-                app:startIconDrawable="@drawable/ic_location">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/b_update_EDT_description"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_marginTop="20dp"
                 android:hint="@string/description"
+                app:counterEnabled="true"
+                app:counterMaxLength="200"
+                android:gravity="top"
                 app:startIconDrawable="@drawable/ic_reviews">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:lines="5"
-                    />
+                    android:lines="3"
+                    android:maxLength="200" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <ImageView
@@ -143,7 +132,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_marginTop="10dp"
-                android:src="@drawable/ic_image"/>
+                android:src="@drawable/ic_image" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/b_update_BTN_pick"

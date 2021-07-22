@@ -81,7 +81,6 @@ class BusinessDetailsReviewsFragment(private val business: Business, private val
     override fun onResume() {
         super.onResume()
         Log.d("pttt", "onResume")
-        // TODO: Fetch all reviews from db by business id
         fetchReviewsFromDB()
     }
 

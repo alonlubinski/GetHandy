@@ -7,13 +7,12 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
 import android.widget.Toast
-import com.alon.gethandy.Fragments.Customer.ProfileFragment
+import androidx.appcompat.app.AppCompatActivity
 import com.alon.gethandy.Models.User
 import com.alon.gethandy.databinding.ActivityCustomerEditProfileBinding
 import com.bumptech.glide.Glide
@@ -48,8 +47,12 @@ class CustomerEditProfileActivity : AppCompatActivity() {
         binding.updateEDTLast.editText?.setText(user?.lastName)
         binding.updateEDTEmail.editText?.setText(user?.email)
         binding.updateEDTPhone.editText?.setText(user?.phone)
-        if(user?.imageUri?.isNotEmpty() == true){
+        if (user?.imageUri?.isNotEmpty() == true) {
             Glide.with(this).load(user.imageUri).into(binding.updateIMGImage)
+        } else {
+            Glide.with(this)
+                .load("https://firebasestorage.googleapis.com/v0/b/gethandy-2c408.appspot.com/o/images%2Fusers%2Fprofile_pic.png?alt=media&token=26a3b1f2-fe62-40a0-95a3-334caa477bf9")
+                .into(binding.updateIMGImage)
         }
 
         binding.updateBTNUpdate.setOnClickListener {
@@ -67,13 +70,11 @@ class CustomerEditProfileActivity : AppCompatActivity() {
                 // Upload success
                 userImageRef.downloadUrl.addOnSuccessListener {
                     // Download image url success
-                    // TODO: upload updated information to the firebase
                     val firstName = binding.updateEDTFirst.editText?.text.toString().trim()
                     val lastName = binding.updateEDTLast.editText?.text.toString().trim()
                     val email = user?.email.toString()
                     val phone = binding.updateEDTPhone.editText?.text.toString().trim()
                     //val location =
-                    // TODO: Upload image to firebase storage, then download the uri and put in the user
                     val imageUri = it.toString()
                     db.collection("users").document(email).update(
                         "firstName", firstName, "lastName", lastName,
@@ -105,20 +106,19 @@ class CustomerEditProfileActivity : AppCompatActivity() {
         }
 
         binding.updateBTNPick.setOnClickListener {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) ==
-                    PackageManager.PERMISSION_DENIED){
+                    PackageManager.PERMISSION_DENIED
+                ) {
                     // Permission denied
                     val permissions = arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE);
                     // Show popup to request runtime permission
                     requestPermissions(permissions, PERMISSION_CODE);
-                }
-                else {
+                } else {
                     // Permission already granted
                     chooseImageGallery();
                 }
-            }
-            else {
+            } else {
                 // System OS is < Marshmallow
                 chooseImageGallery();
             }
@@ -137,15 +137,17 @@ class CustomerEditProfileActivity : AppCompatActivity() {
 
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>,
-        grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int, permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when(requestCode){
+        when (requestCode) {
             PERMISSION_CODE -> {
-                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     chooseImageGallery()
-                }else{
-                    Toast.makeText(this,"Permission denied", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "Permission denied", Toast.LENGTH_SHORT).show()
                 }
             }
         }
@@ -153,7 +155,7 @@ class CustomerEditProfileActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if(requestCode == IMAGE_CHOOSE && resultCode == Activity.RESULT_OK){
+        if (requestCode == IMAGE_CHOOSE && resultCode == Activity.RESULT_OK) {
             binding.updateIMGImage.setImageURI(data?.data)
         }
     }
