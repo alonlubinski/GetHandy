@@ -108,12 +108,7 @@ class HomeActivity : AppCompatActivity() {
                     true
                 }
 
-                // Business options
-//                TODO("check if home is needed")
-//                R.id.business_home -> {
-//                    Toast.makeText(this, "Business home", Toast.LENGTH_SHORT).show()
-//                    true
-//                }
+                //Business
                 R.id.business_business -> {
                     replaceFragment(myBusinessFragment)
                     true

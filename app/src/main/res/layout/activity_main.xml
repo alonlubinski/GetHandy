@@ -8,7 +8,6 @@
     android:padding="20dp"
     android:background="#F3960F">
 
-<!--    // TODO: Change the image view to app logo-->
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="400dp"

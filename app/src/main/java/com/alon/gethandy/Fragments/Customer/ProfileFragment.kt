@@ -43,7 +43,6 @@ class ProfileFragment(var userEmail: String) : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        // TODO: Get data from firebase and update ui
         fetchUserDetailsFromDB()
         updateUI()
     }
