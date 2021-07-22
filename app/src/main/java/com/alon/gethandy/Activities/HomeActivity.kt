@@ -109,11 +109,11 @@ class HomeActivity : AppCompatActivity() {
                     replaceFragment(myBusinessFragment)
                     true
                 }
-                R.id.business_history -> {
-//                    Toast.makeText(this, "Business history", Toast.LENGTH_SHORT).show()
-                    replaceFragment(businessHistoryFragment)
-                    true
-                }
+//                R.id.business_history -> {
+////                    Toast.makeText(this, "Business history", Toast.LENGTH_SHORT).show()
+////                    replaceFragment(businessHistoryFragment)
+//                    true
+//                }
                 R.id.business_reviews -> {
 //                    Toast.makeText(this, "Business reviews", Toast.LENGTH_SHORT).show()
                     replaceFragment(businessReviewsFragment)

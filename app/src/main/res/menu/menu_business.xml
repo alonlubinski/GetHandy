@@ -13,11 +13,11 @@
         android:title="@string/my_business_str"
         android:icon="@drawable/ic_business"/>
 
-    <item
-        android:id="@+id/business_history"
-        android:enabled="true"
-        android:title="@string/history_str"
-        android:icon="@drawable/ic_history"/>
+<!--    <item-->
+<!--        android:id="@+id/business_history"-->
+<!--        android:enabled="true"-->
+<!--        android:title="@string/history_str"-->
+<!--        android:icon="@drawable/ic_history"/>-->
 
     <item
         android:id="@+id/business_reviews"

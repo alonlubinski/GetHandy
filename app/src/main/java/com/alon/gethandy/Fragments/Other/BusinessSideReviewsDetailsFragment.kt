@@ -74,12 +74,18 @@ class BusinessSideReviewsDetailsFragment(userEmail: String) : Fragment() {
                     reviews.add(review)
                     Log.d(TAG, "${document.id} => ${document.data}")
                 }
-                reviewsAdapter = BusinessDetailsReviewsAdapter(reviews)
-                binding.businessSideDetailsFragmentReviewsRCV.adapter = reviewsAdapter
+
+                if (reviews.isEmpty()){
+                    binding.bHistoryLBLEmpty.visibility = View.VISIBLE
+                }
+                else{
+                    binding.bHistoryLBLEmpty.visibility = View.INVISIBLE
+                    reviewsAdapter = BusinessDetailsReviewsAdapter(reviews)
+                    binding.businessSideDetailsFragmentReviewsRCV.adapter = reviewsAdapter
+                }
             }
             .addOnFailureListener { exception ->
                 Log.w(TAG, "Error getting documents: ", exception)
             }
-
     }
 }
