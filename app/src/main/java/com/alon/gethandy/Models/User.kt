@@ -8,8 +8,8 @@ data class User(
     var email: String = "",
     var phone: String = "",
     var userType: String = "",
-    var favorites: ArrayList<String> = ArrayList(),
-    var history: ArrayList<String> = ArrayList(),
+    var lon: Double = 0.0,
+    var lat: Double = 0.0,
     var imageUri: String = "",
 
 ) : Serializable

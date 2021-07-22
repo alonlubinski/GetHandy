@@ -40,7 +40,6 @@ class BusinessDetailsFragment(private val businessOwnerEmail: String) : Fragment
         binding.businessDetailsFragmentLBLOwner.text = business.ownerName
         binding.businessDetailsFragmentLBLPhone.text = business.phoneNumber
         binding.businessDetailsFragmentLBLEmail.text = business.ownerEmail
-        binding.businessDetailsFragmentLBLAddress.text = business.businessAddress
         binding.businessDetailsFragmentLBLHours.text = business.startHours + " - " + business.endHours
         if(business.numOfRates > 0) {
             val rating =

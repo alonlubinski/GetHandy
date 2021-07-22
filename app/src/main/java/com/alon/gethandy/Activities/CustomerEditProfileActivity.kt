@@ -48,7 +48,6 @@ class CustomerEditProfileActivity : AppCompatActivity() {
         binding.updateEDTLast.editText?.setText(user?.lastName)
         binding.updateEDTEmail.editText?.setText(user?.email)
         binding.updateEDTPhone.editText?.setText(user?.phone)
-        //binding.updateEDTLocation.editText?.setText()
         if(user?.imageUri?.isNotEmpty() == true){
             Glide.with(this).load(user.imageUri).into(binding.updateIMGImage)
         }

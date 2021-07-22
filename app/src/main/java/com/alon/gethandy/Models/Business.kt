@@ -5,7 +5,8 @@ import java.io.Serializable
 data class Business(
     val ownerEmail: String = "",
     var businessName: String = "",
-    var businessAddress: String = "",
+    var lon: Double = 0.0,
+    var lat: Double = 0.0,
     var businessImage: String = "",
     var totalRating: Int = 0,
     var numOfRates: Int = 0,

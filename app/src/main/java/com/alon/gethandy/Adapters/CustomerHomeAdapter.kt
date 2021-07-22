@@ -29,7 +29,7 @@ class CustomerHomeAdapter(private val dataSet: ArrayList<Business>, private val 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         holder.binding.businessRowLBLName.text = dataSet.get(position).businessName
-        holder.binding.businessRowLBLAddress.text = dataSet.get(position).businessAddress
+        holder.binding.businessRowLBLDescription.text = dataSet.get(position).description
         if(dataSet.get(position).numOfRates > 0){
             val rating =
                 String.format("%.2f", (dataSet.get(position).totalRating.toDouble() / dataSet.get(position).numOfRates.toDouble()))
