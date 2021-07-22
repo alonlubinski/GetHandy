@@ -1,8 +1,10 @@
 package com.alon.gethandy.Fragments.Customer
 
+import android.location.Location
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -97,9 +99,13 @@ class CustomerHomeFragment(private val user: User) : Fragment() {
         db.collection("businesses").get().addOnSuccessListener {
             for(document in it){
                 val business = document.toObject<Business>()
+                val results = FloatArray(1)
+                Location.distanceBetween(user.lat, user.lon, business.lat, business.lon, results)
+                business.distance = String.format("%.1f",(results[0] / 1000)) + "KM"
                 businesses.add(business)
             }
-            var adapter = CustomerHomeAdapter(businesses, user)
+            var sortedArr = businesses.sortedWith(compareBy { it.distance }).reversed()
+            var adapter = CustomerHomeAdapter(sortedArr, user)
             binding.customerHomeRCV.adapter = adapter
         }
     }
